@@ -1,6 +1,6 @@
 {
   "name": "rabbit-routingkey-parser",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Parses routing keys for RabbitMq topics",
   "main": "index.js",
   "engines": {
