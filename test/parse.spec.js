@@ -19,7 +19,7 @@ describe('Parser', function () {
     ])
   })
 
-  it('can parse multiple stars', function () {
+  it('can parse two stars', function () {
     parser.parse('*.new.*', 'brave.new.world').should.deepEqual([
       'brave.new.world',
       'brave',
@@ -77,6 +77,15 @@ describe('Parser', function () {
     parser.parse('#.new.world', 'my-brave.new.world').should.deepEqual([
       'my-brave.new.world',
       'my-brave'
+    ])
+  })
+
+  it('can parse many stars', function () {
+    parser.parse('brave.new.*.*.happy.*', 'brave.new.world.is.happy.world').should.deepEqual([
+      'brave.new.world.is.happy.world',
+      'world',
+      'is',
+      'world'
     ])
   })
 })

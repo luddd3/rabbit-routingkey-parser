@@ -17,6 +17,6 @@ module.exports = function RoutingKeyParser () {
     for (let rule of rules) {
       p = p.replace(rule[0], rule[1])
     }
-    return new RegExp(p).exec(key).slice(-3)
+    return new RegExp(p).exec(key).slice(0)
   }
 }
