@@ -27,5 +27,8 @@
     "should": "^8.2.2",
     "standard": "^6.0.7"
   },
-  "npmName": "rabbit-routingkey-parser"
+  "npmName": "rabbit-routingkey-parser",
+  "dependencies": {
+    "ramda": "^0.19.1"
+  }
 }
