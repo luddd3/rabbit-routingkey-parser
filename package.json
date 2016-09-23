@@ -23,12 +23,12 @@
   "author": "Mathias Lundell",
   "license": "ISC",
   "devDependencies": {
-    "mocha": "^2.4.5",
-    "should": "^8.3.1",
-    "standard": "^6.0.8"
+    "mocha": "^3.0.2",
+    "should": "^11.1.0",
+    "standard": "^8.1.0"
   },
   "npmName": "rabbit-routingkey-parser",
   "dependencies": {
-    "ramda": "^0.21.0"
+    "ramda": "^0.22.1"
   }
 }
