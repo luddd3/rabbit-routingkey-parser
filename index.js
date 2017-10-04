@@ -5,6 +5,7 @@ module.exports = function RoutingKeyParser () {
   if (!(this instanceof RoutingKeyParser)) return new RoutingKeyParser()
 
   let rules = [
+    [new RegExp('\\.', 'g'), '\\.'],
     [new RegExp('\\*', 'g'), '([\\w|-]+)'],
     [new RegExp('#', 'g'), '([\\w|.|-]*)']
   ]

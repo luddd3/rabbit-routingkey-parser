@@ -91,4 +91,10 @@ describe('Parser parses', function () {
         'world'
       ])
   })
+
+  it('ends with many stars match', function () {
+    parser
+      .parse('brave.*.*', 'brave.new.world')
+      .should.deepEqual(['brave.new.world', 'new', 'world'])
+  })
 })

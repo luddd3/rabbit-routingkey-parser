@@ -21,4 +21,12 @@ describe('Parser tests', function () {
   it('single star in middle not match', function () {
     parser.test('brave.*.world', 'brave.new.worldd').should.equal(false)
   })
+
+  it('many stars in end match', function () {
+    parser.test('brave.*.*', 'brave.new.world').should.equal(true)
+  })
+
+  it('many stars in end not match', function () {
+    parser.test('brave.*.*', 'brave.new').should.equal(false)
+  })
 })
