@@ -1,6 +1,7 @@
-/*global describe it*/
+/* eslint-env mocha */
 'use strict'
 
+require('should')
 let Parser = require('../')
 let parser = new Parser()
 
