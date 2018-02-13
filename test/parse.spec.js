@@ -1,9 +1,7 @@
 /* eslint-env mocha */
-'use strict'
-
 require('should')
-let Parser = require('../')
-let parser = new Parser()
+const Parser = require('../')
+const parser = new Parser()
 
 describe('Parser parses', function () {
   it('single star', function () {

@@ -1,21 +1,20 @@
-'use strict'
 const memoize = require('memoize-immutable')
 
 module.exports = function RoutingKeyParser () {
   if (!(this instanceof RoutingKeyParser)) return new RoutingKeyParser()
 
-  let rules = [
+  const rules = [
     [new RegExp('\\.', 'g'), '\\.'],
     [new RegExp('\\*', 'g'), '([\\w|-]+)'],
     [new RegExp('#', 'g'), '([\\w|.|-]*)']
   ]
 
-  let replaceParse = memoize(function (pattern) {
-    let p = replace(pattern)
+  const replaceParse = memoize(function (pattern) {
+    const p = replace(pattern)
     return new RegExp(p)
   })
-  let replaceTest = memoize(function (pattern) {
-    let p = replace(pattern)
+  const replaceTest = memoize(function (pattern) {
+    const p = replace(pattern)
     return new RegExp('^' + p + '$')
   })
 
@@ -25,12 +24,12 @@ module.exports = function RoutingKeyParser () {
   }
 
   function parse (pattern, key) {
-    let re = replaceParse(pattern)
+    const re = replaceParse(pattern)
     return re.exec(key).slice(0)
   }
 
   function test (pattern, key) {
-    let re = replaceTest(pattern)
+    const re = replaceTest(pattern)
     return re.test(key)
   }
 
