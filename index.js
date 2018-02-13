@@ -1,5 +1,5 @@
 'use strict'
-let memoize = require('ramda').memoize
+const memoize = require('memoize-immutable')
 
 module.exports = function RoutingKeyParser () {
   if (!(this instanceof RoutingKeyParser)) return new RoutingKeyParser()
