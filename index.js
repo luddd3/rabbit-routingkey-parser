@@ -1,43 +1,52 @@
-const memoize = require('memoize-immutable')
+'use strict'
 
-module.exports = function RoutingKeyParser () {
-  if (!(this instanceof RoutingKeyParser)) return new RoutingKeyParser()
+class RoutingKeyParser {
+  constructor () {
+    this.rules = [
+      [/\./g, '\\.'],
+      [/\*/g, '([\\w|-]+)'],
+      [/#/g, '([\\w|.|-]*)']
+    ]
 
-  const rules = [
-    [new RegExp('\\.', 'g'), '\\.'],
-    [new RegExp('\\*', 'g'), '([\\w|-]+)'],
-    [new RegExp('#', 'g'), '([\\w|.|-]*)']
-  ]
-
-  const replaceParse = memoize(function (pattern) {
-    const p = replace(pattern)
-    return new RegExp(p)
-  })
-  const replaceTest = memoize(function (pattern) {
-    const p = replace(pattern)
-    return new RegExp('^' + p + '$')
-  })
-
-  return {
-    parse: parse,
-    test: test
+    this.replaceParse = this.#memoize((pattern) => {
+      const p = this.#replace(pattern)
+      return new RegExp(p)
+    })
+    this.replaceTest = this.#memoize((pattern) => {
+      const p = this.#replace(pattern)
+      return new RegExp(`^${p}$`)
+    })
   }
 
-  function parse (pattern, key) {
-    const re = replaceParse(pattern)
+  #memoize (fn) {
+    const cache = new Map()
+    return param => {
+      if (cache.has(param)) {
+        return cache.get(param)
+      }
+      const result = fn(param)
+      cache.set(param, result)
+      return result
+    }
+  }
+
+  #replace (pattern) {
+    let p = pattern
+    for (const rule of this.rules) {
+      p = p.replace(rule[0], rule[1])
+    }
+    return p
+  }
+
+  parse (pattern, key) {
+    const re = this.replaceParse(pattern)
     return re.exec(key).slice(0)
   }
 
-  function test (pattern, key) {
-    const re = replaceTest(pattern)
+  test (pattern, key) {
+    const re = this.replaceTest(pattern)
     return re.test(key)
   }
-
-  function replace (pattern) {
-    let p = pattern
-    rules.forEach(function (rule) {
-      p = p.replace(rule[0], rule[1])
-    })
-    return p
-  }
 }
+
+module.exports = RoutingKeyParser

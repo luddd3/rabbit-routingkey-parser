@@ -1,34 +1,26 @@
 {
   "name": "rabbit-routingkey-parser",
   "version": "1.1.4",
-  "description": "Parses routing keys for RabbitMq topics",
+  "description": "Parses routing keys for RabbitMQ topics",
   "main": "index.js",
+  "type": "commonjs",
   "engines": {
-    "node": ">=6.6.0"
-  },
-  "directories": {
-    "test": "test"
+    "node": ">=22.17.0"
   },
   "scripts": {
-    "test": "mocha ./test/*.spec.js",
-    "test:watch": "npm test -- --watch",
-    "start": "node app/main.js",
-    "lint": "standard index.js test",
-    "check:src": "npm run lint && npm test"
+    "test": "node --test ./test/*.spec.js",
+    "test:watch": "node --test --watch",
+    "lint": "eslint --fix",
+    "check:src": "node --run lint && node --run test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/luddd3/rabbit-routingkey-parser"
   },
   "author": "Mathias Lundell",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
-    "mocha": "^5.0.0",
-    "should": "^13.2.0",
-    "standard": "^10.0.3"
-  },
-  "npmName": "rabbit-routingkey-parser",
-  "dependencies": {
-    "memoize-immutable": "^3.0.0"
+    "eslint": "^9.39.2",
+    "neostandard": "^0.12.2"
   }
 }
